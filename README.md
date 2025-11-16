@@ -1,4 +1,4 @@
-# ThreatLens.
+# ThreatLens
 # ThreatLens: A Big Data–Powered Cyber Threat Intelligence Dashboard
 
 ## Description
