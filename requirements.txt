@@ -1,0 +1,17 @@
+# Web Scraping
+beautifulsoup4
+scrapy
+selenium
+
+# Data Analysis
+pandas
+numpy
+scikit-learn
+
+# NLP
+spacy
+nltk
+
+# Web Interface
+flask
+streamlit
