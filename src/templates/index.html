@@ -1,0 +1,44 @@
+"""{% extends 'base.html' %}
+
+{% block content %}
+<h1>Dashboard</h1>
+<div class="mb-3">
+  <form id="search-form" class="d-flex">
+    <input id="search-input" class="form-control me-2" type="search" placeholder="Search threats, CVE ids, keywords" aria-label="Search">
+    <button class="btn btn-primary" type="submit">Search</button>
+  </form>
+</div>
+
+<h3>Recent Alerts</h3>
+<table class="table table-striped" id="alerts-table">
+  <thead>
+    <tr><th>Date</th><th>Source</th><th>Severity</th><th>Summary</th></tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script>
+async function loadAlerts(){
+  const res = await fetch('/api/alerts');
+  const data = await res.json();
+  const tbody = document.querySelector('#alerts-table tbody');
+  tbody.innerHTML = '';
+  data.forEach(a => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${a.date}</td><td>${a.source}</td><td>${a.severity}</td><td>${a.summary}</td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+document.getElementById('search-form').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const q = document.getElementById('search-input').value;
+  const res = await fetch('/api/search?q='+encodeURIComponent(q));
+  const json = await res.json();
+  alert('Search placeholder — query: '+json.query+' (results not implemented yet)');
+});
+
+loadAlerts();
+</script>
+{% endblock %}
+"""
