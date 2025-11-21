@@ -1,0 +1,17 @@
+app:
+  host: "0.0.0.0"
+  port: 8080
+  debug: false
+
+nlp:
+  model: "en_core_web_sm"
+  batch_size: 32
+
+collector:
+  sources:
+    - name: "example_api"
+      url: "https://api.example.com/data"
+
+alerts:
+  enabled: true
+  threshold: 0.8

@@ -1,5 +1,6 @@
-"""flask
-requests
-SQLAlchemy
-apscheduler
-"""
+Flask==2.2.5
+gunicorn==22.1.0
+requests==2.31.0
+PyYAML==6.0
+spacy==3.6.0
+python-dotenv==1.0.0
