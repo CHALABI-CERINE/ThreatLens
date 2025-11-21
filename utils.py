@@ -60,7 +60,7 @@ def save_items_csv(items: List[Dict], filepath: str = 'data/items.csv') -> None:
     
     # Convert datetime objects to strings
     for col in df.columns:
-        if df[col].dtype == 'object':
+        if df[col].dtype == 'object' and len(df) > 0:
             # Check if it's a datetime column
             try:
                 if isinstance(df[col].iloc[0], datetime):
@@ -100,9 +100,10 @@ def load_items_csv(filepath: str = 'data/items.csv') -> List[Dict]:
             df['published'] = pd.to_datetime(df['published'], errors='coerce')
         
         # Convert string representations of dicts/lists back
+        import ast
         for col in ['entities']:
             if col in df.columns:
-                df[col] = df[col].apply(lambda x: eval(x) if isinstance(x, str) and x.startswith('{') else x)
+                df[col] = df[col].apply(lambda x: ast.literal_eval(x) if isinstance(x, str) and x.startswith('{') else x)
         
         items = df.to_dict('records')
         print(f"Loaded {len(items)} items from {filepath}")
@@ -153,7 +154,7 @@ def filter_items_by_date(items: List[Dict], start_date: datetime = None,
             try:
                 from dateutil import parser
                 published = parser.parse(published)
-            except:
+            except (ValueError, TypeError):
                 continue
         
         # Apply filters
@@ -252,7 +253,7 @@ def get_summary_statistics(items: List[Dict]) -> Dict:
                 try:
                     from dateutil import parser
                     datetime_dates.append(parser.parse(d))
-                except:
+                except (ValueError, TypeError):
                     pass
             elif isinstance(d, datetime):
                 datetime_dates.append(d)

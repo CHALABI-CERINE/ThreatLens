@@ -51,7 +51,7 @@ def generate_alerts(items: List[Dict], severity_threshold: str = 'high',
                 try:
                     from dateutil import parser
                     published = parser.parse(published)
-                except:
+                except (ValueError, TypeError):
                     published = datetime.now()
             
             if published < cutoff_date:

@@ -46,7 +46,7 @@ def extract_entities(text: str) -> Dict[str, Set[str]]:
                     entities['ORG'].add(ent.text)
                 elif ent.label_ == 'PRODUCT':
                     entities['PRODUCT'].add(ent.text)
-        except:
+        except (OSError, Exception):
             pass  # Fall back to pattern matching
     except ImportError:
         pass  # Fall back to pattern matching
@@ -137,7 +137,7 @@ def summarize(text: str, max_length: int = 200) -> str:
             try:
                 nltk.download('punkt', quiet=True)
                 sentences = nltk.sent_tokenize(text)
-            except:
+            except (LookupError, OSError):
                 # Fall back to simple splitting
                 sentences = text.split('. ')
     except ImportError:

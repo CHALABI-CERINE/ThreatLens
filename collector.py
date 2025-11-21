@@ -40,12 +40,12 @@ def fetch_rss(url: str, source_name: str = "RSS Feed") -> List[Dict]:
             if hasattr(entry, 'published'):
                 try:
                     published = date_parser.parse(entry.published)
-                except:
+                except (ValueError, TypeError):
                     published = datetime.now()
             elif hasattr(entry, 'updated'):
                 try:
                     published = date_parser.parse(entry.updated)
-                except:
+                except (ValueError, TypeError):
                     published = datetime.now()
             else:
                 published = datetime.now()
@@ -103,7 +103,7 @@ def fetch_latest_cves_from_circl(max_results: int = 50) -> List[Dict]:
             # Parse published date
             try:
                 published_date = datetime.strptime(published, '%Y-%m-%dT%H:%M:%S')
-            except:
+            except (ValueError, TypeError):
                 published_date = datetime.now()
             
             # Get CVSS score if available
