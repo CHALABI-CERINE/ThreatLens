@@ -1,0 +1,57 @@
+# Configuration for ThreatLens Streamlit POC
+
+# RSS sources for threat intelligence
+rss_sources:
+  - name: "Bleeping Computer"
+    url: "https://www.bleepingcomputer.com/feed/"
+  - name: "The Hacker News"
+    url: "https://feeds.feedburner.com/TheHackersNews"
+  - name: "Krebs on Security"
+    url: "https://krebsonsecurity.com/feed/"
+  - name: "Threatpost"
+    url: "https://threatpost.com/feed/"
+  - name: "Dark Reading"
+    url: "https://www.darkreading.com/rss.xml"
+
+# CVE API configuration
+cve_api:
+  circl_url: "https://cve.circl.lu/api/last"
+  max_cves: 50
+
+# Severity keywords for automatic classification
+severity_keywords:
+  critical:
+    - "critical"
+    - "zero-day"
+    - "0-day"
+    - "actively exploited"
+    - "remote code execution"
+    - "RCE"
+    - "arbitrary code execution"
+    - "privilege escalation"
+    - "authentication bypass"
+  high:
+    - "high severity"
+    - "high risk"
+    - "vulnerability"
+    - "exploit"
+    - "malware"
+    - "ransomware"
+    - "backdoor"
+    - "trojan"
+    - "botnet"
+  medium:
+    - "medium severity"
+    - "security flaw"
+    - "data breach"
+    - "phishing"
+    - "denial of service"
+    - "DoS"
+    - "information disclosure"
+    - "password"
+  low:
+    - "low severity"
+    - "minor"
+    - "configuration"
+    - "update available"
+    - "patch released"
