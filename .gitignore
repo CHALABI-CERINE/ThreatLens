@@ -15,6 +15,7 @@ pip-wheel-metadata/
 
 # Environment
 .env
+!frontend/.env
 
 # OS
 .DS_Store
@@ -24,3 +25,9 @@ pip-wheel-metadata/
 
 # Data
 data/
+
+# Node
+node_modules/
+dist/
+build/
+.vite/
