@@ -3,6 +3,7 @@ Minimal Flask app exposing simple endpoints for ingest, process and health.
 """
 
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from utils import load_config, setup_logging
 from collector import Collector
 from nlp_pipeline import NLPPipeline
@@ -10,6 +11,7 @@ from alerts import check_alerts
 import json
 
 app = Flask(__name__)
+CORS(app)
 logger = setup_logging()
 
 cfg = load_config()

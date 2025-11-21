@@ -24,3 +24,9 @@ pip-wheel-metadata/
 
 # Data
 data/
+
+# Node
+node_modules/
+dist/
+build/
+.vite/
