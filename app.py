@@ -8,6 +8,7 @@ from collector import Collector
 from nlp_pipeline import NLPPipeline
 from alerts import check_alerts
 import json
+import os
 
 app = Flask(__name__)
 logger = setup_logging()
@@ -48,4 +49,13 @@ def alerts_endpoint():
     return jsonify({"alerts": alerts})
 
 if __name__ == "__main__":
-    app.run(host=cfg.get("app", {}).get("host", "0.0.0.0"), port=cfg.get("app", {}).get("port", 8080), debug=cfg.get("app", {}).get("debug", False))
+    # Check for Render's PORT environment variable first. 
+    # If it doesn't exist, fall back to your config file for local development.
+    config_port = cfg.get("app", {}).get("port", 8080)
+    render_port = int(os.environ.get("PORT", config_port))
+    
+    app.run(
+        host=cfg.get("app", {}).get("host", "0.0.0.0"), 
+        port=render_port, 
+        debug=cfg.get("app", {}).get("debug", False)
+    )
